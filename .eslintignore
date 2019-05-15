@@ -1,0 +1,3 @@
+build/*.js
+.history/*.js
+dist/*.js

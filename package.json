@@ -1,0 +1,37 @@
+{
+  "name": "vuecli3Template",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "nodeserve": "node ./server"
+  },
+  "dependencies": {
+    "element-ui": "^2.4.5",
+    "express": "^4.16.4",
+    "jquery": "^3.3.1",
+    "mddir": "^1.1.1",
+    "mongodb": "^3.2.4",
+    "normalize.css": "^8.0.1",
+    "vue": "^2.5.22",
+    "vue-router": "^3.0.1",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.4.0",
+    "@vue/cli-service": "^3.4.0",
+    "@vue/cli-plugin-eslint": "^3.7.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "axios": "^0.18.0",
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-axios": "0.0.4",
+    "vue-cli-plugin-element": "^1.0.1",
+    "vue-template-compiler": "^2.5.21"
+  }
+}
