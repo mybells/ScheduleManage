@@ -74,7 +74,7 @@ module.exports = {
   devServer: {
     open: true,
     host: "localhost",
-    port: 8888,
+    port: 8000,
     https: false,
     hotOnly: true,
     // 查阅 https://github.com/vuejs/vue-docs-zh-cn/blob/master/vue-cli/cli-service.md#配置代理
