@@ -1,16 +1,18 @@
 <template>
-  <div id="home">
-    <h2>This is Home</h2>
-    <img src="@/assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+  <div class="main">
+      <el-button type="primary">主要按钮</el-button>
+    <!-- <el-calendar v-model="value"></el-calendar> -->
   </div>
 </template>
 <script>
-import HelloWorld from "@/components/HelloWorld.vue";
 export default {
-  name: "home",
+  name:'main',
   components: {
-    HelloWorld
+  },
+  data() {
+    return {
+      value:new Date()
+    }
   },
   created() {
     this.$axios.get('http://localhost:3000/ss').then(res=>{

@@ -6,19 +6,19 @@ const mongoose=require('mongoose');
 
 /* mongoose连接 */
 /* 本地数据库 */
-// const uri = "mongodb://localhost:27017/local";
-// mongoose.connect(uri, { useNewUrlParser: true}).then(
-//   () => { console.log("yes") },
-//   err => { console.log(err)}
-// );
-
-/* 远程mongodb数据库 https://cloud.mongodb.com     435541908@qq.com/435541908@qq.com*/
-//test是数据库
-const uri = "mongodb+srv://mybells:test1234@cluster0-ryeek.mongodb.net/test?retryWrites=true&ssl=true&authSource=admin";
+const uri = "mongodb://localhost:27017/local";
 mongoose.connect(uri, { useNewUrlParser: true}).then(
-  () => { console.log("Mongodb Connect Sucess") },
+  () => { console.log("yes") },
   err => { console.log(err)}
 );
+
+// /* 远程mongodb数据库 https://cloud.mongodb.com     435541908@qq.com/435541908@qq.com*/
+// //test是数据库
+// const uri = "mongodb+srv://mybells:test1234@cluster0-ryeek.mongodb.net/test?retryWrites=true&ssl=true&authSource=admin";
+// mongoose.connect(uri, { useNewUrlParser: true}).then(
+//   () => { console.log("Mongodb Connect Sucess") },
+//   err => { console.log(err)}
+// );
 
 // 模型骨架
 var Schema = new mongoose.Schema({

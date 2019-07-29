@@ -1,5 +1,5 @@
 {
-  "name": "vuecli3Template",
+  "name": "schedulemanage",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,7 +9,7 @@
     "nodeserve": "node ./server"
   },
   "dependencies": {
-    "element-ui": "^2.4.5",
+    "element-ui": "^2.11.1",
     "express": "^4.16.4",
     "jquery": "^3.3.1",
     "mddir": "^1.1.1",
