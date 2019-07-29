@@ -1,12 +1,10 @@
 <template>
   <div class="main">
-      <el-button type="primary">主要按钮</el-button>
-    <!-- <el-calendar v-model="value"></el-calendar> -->
+    <el-calendar v-model="value"></el-calendar>
   </div>
 </template>
 <script>
 export default {
-  name:'main',
   components: {
   },
   data() {
