@@ -2,13 +2,15 @@ const express = require('express')
 const path = require('path')
 const app = express()
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+
 
 
 /* mongoose连接 */
 /* 本地数据库 */
 const uri = "mongodb://localhost:27017/scheduledb";
 mongoose.connect(uri, { useNewUrlParser: true}).then(
-  () => { console.log("yes") },
+  () => { console.log("connect is success!") },
   err => { console.log(err)}
 );
 
@@ -26,8 +28,7 @@ mongoose.connect(uri, { useNewUrlParser: true}).then(
     content: {type: String}
   });
   // 由schema构造生成Model
-  var Schedule = mongoose.model('Schedule', Schema);//集合是小写复数schedules
-
+  var Schedule = mongoose.model('schedule', Schema);//集合是小写复数schedules
 
 /* mongodb连接 */
 // const MongoClient = require('mongodb').MongoClient;
@@ -45,7 +46,9 @@ mongoose.connect(uri, { useNewUrlParser: true}).then(
 //     });
 //   }
 // });
-
+// 使用body-parser中间件
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use('/static', express.static(path.join(__dirname, 'public')))
 
 //设置允许跨域访问该服务.
@@ -59,15 +62,8 @@ app.all('*', function(req, res, next) {
 });
 
 app.post('/insert', (req, res) => {
-  debugger;
   const schedule = new Schedule({ time: req.body.time,content: req.body.content });
-  schedule.save().then((err,pro) => {
-    if (err) {
-      res.json(err);
-    }
-    var data = {"state": true};
-    res.json(data);
-  });
+  schedule.save().then((data) => res.json(data)).catch(err => res.status(404).json(err));
 })
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

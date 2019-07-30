@@ -9,6 +9,7 @@
     "nodeserve": "node ./server"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "element-ui": "^2.11.1",
     "express": "^4.17.1",
     "jquery": "^3.4.1",
