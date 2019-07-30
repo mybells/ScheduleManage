@@ -1,12 +1,12 @@
 const express = require('express')
 const path = require('path')
 const app = express()
-const mongoose=require('mongoose');
+const mongoose = require('mongoose');
 
 
 /* mongoose连接 */
 /* 本地数据库 */
-const uri = "mongodb://localhost:27017/local";
+const uri = "mongodb://localhost:27017/scheduledb";
 mongoose.connect(uri, { useNewUrlParser: true}).then(
   () => { console.log("yes") },
   err => { console.log(err)}
@@ -20,20 +20,13 @@ mongoose.connect(uri, { useNewUrlParser: true}).then(
 //   err => { console.log(err)}
 // );
 
-// 模型骨架
-var Schema = new mongoose.Schema({
-  one: {type: String},
-});
-// 由schema构造生成Model
-var Model = mongoose.model('Test',Schema);//集合是小写复数tests
-// 查询数据
-Model.find({one: '1'},function(err,res){
-  if(err){
-    console.log(err);
-  } else {
-    console.log(res);
-  }
-})
+  // 模型骨架
+  var Schema = new mongoose.Schema({
+    time: {type: Date},
+    content: {type: String}
+  });
+  // 由schema构造生成Model
+  var Schedule = mongoose.model('Schedule', Schema);//集合是小写复数schedules
 
 
 /* mongodb连接 */
@@ -65,6 +58,16 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-app.get('/ss', (req, res) => res.send("Hello World!"))
+app.post('/insert', (req, res) => {
+  debugger;
+  const schedule = new Schedule({ time: req.body.time,content: req.body.content });
+  schedule.save().then((err,pro) => {
+    if (err) {
+      res.json(err);
+    }
+    var data = {"state": true};
+    res.json(data);
+  });
+})
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
