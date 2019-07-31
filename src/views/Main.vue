@@ -1,13 +1,15 @@
 <template>
 <el-container>
   <el-header>
-    <el-button type="primary" @click="collapse" icon="el-icon-s-fold" circle></el-button>
+    <el-button type="primary" @click="asideWidth = asideWidth === '300px' ? '86px' : '300px';" icon="el-icon-s-fold" circle class="collapse"></el-button>
   </el-header>
   <el-container>
-    <el-aside :width="asideWidth">Aside</el-aside>
+    <el-aside :width="asideWidth">
+      <side :width="asideWidth" @reload="reload"></side>
+    </el-aside>
     <el-container>
       <el-main>
-        <card></card>
+        <allCard :data="data" @reload="reload"></allCard>
       </el-main>
     </el-container>
   </el-container>
@@ -15,30 +17,42 @@
 
 </template>
 <script>
-import card from './Card'
+import allCard from './AllCard'
+import side from './Side'
+import {getData} from '../api/api'
+import Bus from '../components/common/bus.js'
 export default {
   components: {
-    card
+    allCard,
+    side
   },
   data() {
     return {
-      asideWidth: '300px'
+      asideWidth: '300px',
+      data: []
     }
   },
   created() {
-    // this.$axios.get('http://localhost:3000/ss').then(res=>{
-    //   debugger
-    //   console.log(res)
-    // })
+    let _this = this;
+    this.getData();
+    Bus.$on('reload',()=>{_this.reload()});
   },
   methods: {
-    collapse(){
-      this.asideWidth = this.asideWidth === "300px" ? '0' : '300px';
+    getData(){
+      this.$axios.get(getData).then(res=>{
+        this.data = res.data || []
+      })
+    },
+    reload(){
+      this.getData();
     }
+  },
+  beforeDestroy() {
+    Bus.$off('reload');
   },
 };
 </script>
-<style>
+<style lang="scss">
   .el-header, .el-footer {
     background-color: #B3C0D1;
     color: #333;
@@ -60,5 +74,11 @@ export default {
     color: #333;
     text-align: center;
     height: calc(100vh - 60px);
+  }
+
+  .collapse{
+    .el-icon-s-fold{
+      font-size:20px;
+    }
   }
 </style>
