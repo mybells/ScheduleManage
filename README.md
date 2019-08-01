@@ -8,23 +8,12 @@
 ## 安装 npm 包
 
 ```
-npm install
+npm install 后台依赖
+npm run client-install 前台依赖
 ```
 
 ## 运行项目
 
 ```
-npm run serve
-```
-
-## 打包项目
-
-```
-npm run build
-```
-
-## 导出 webpack 配置到 output.js
-
-```
-vue inspect > output.js
+npm run dev
 ```
