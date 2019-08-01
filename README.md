@@ -1,6 +1,6 @@
-# vuecli3Template
+# ScheduleManage
 
-基于 vue-cli3.9.2 的项目模板<br/>
+日程管理<br/>
 
 技术栈主要使用 vue-cli3.9.2+vue+elementUI+vuex+vue-router+axios<br/>
               node+express+mongoose
