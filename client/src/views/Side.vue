@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import {insertData} from '../api/api'
+import {insertData} from '../config/api/schedule'
 export default {
   props: {
     width: {

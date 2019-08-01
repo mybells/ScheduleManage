@@ -20,10 +20,10 @@
 </template>
 
 <script>
-  import {updateData} from '../api/api'
-  import {getDataById} from '../api/api'
+  import {updateData} from '../config/api/schedule'
+  import {getDataById} from '../config/api/schedule'
   import editor from '../components/Editor'
-  import Bus from '../components/common/bus'
+  import Bus from '../config/common/bus'
   export default {
     props: {
       id: {

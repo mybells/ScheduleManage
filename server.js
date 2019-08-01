@@ -1,9 +1,11 @@
 const express = require('express')
-const path = require('path')
 const app = express()
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 mongoose.set('useFindAndModify', false)
+
+// 引入schedule.js
+const schedule = require('./routes/schedule');
 
 
 /* mongoose连接 */
@@ -22,13 +24,7 @@ mongoose.connect(uri, { useNewUrlParser: true}).then(
 //   err => { console.log(err)}
 // );
 
-  // 模型骨架
-  var Schema = new mongoose.Schema({
-    time: {type: Date},
-    content: {type: String}
-  });
-  // 由schema构造生成Model
-  var Schedule = mongoose.model('schedule', Schema);//集合是小写复数schedules
+
 
 /* mongodb连接 */
 // const MongoClient = require('mongodb').MongoClient;
@@ -49,7 +45,6 @@ mongoose.connect(uri, { useNewUrlParser: true}).then(
 // 使用body-parser中间件
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use('/static', express.static(path.join(__dirname, 'public')))
 
 //设置允许跨域访问该服务.
 app.all('*', function(req, res, next) {
@@ -61,27 +56,7 @@ app.all('*', function(req, res, next) {
   next();
 });
 
-/* 插入数据 */
-app.post('/insertData', (req, res) => {
-  const schedule = new Schedule({ time: req.body.time,content: req.body.content });
-  schedule.save().then((data) => res.json(data)).catch(err => res.status(404).json(err));
-})
-/* 查询所有数据 */
-app.get('/getData', (req, res) => {
-  Schedule.find().then((data) => res.json(data)).catch(err => res.status(404).json(err));
-})
-/* 查询一条数据 */
-app.get('/getDataById/:id', (req, res) => {
-  Schedule.findById(req.params.id).then((data) => res.json(data)).catch(err => res.status(404).json(err));
-})
-/* 更新一条数据 */
-app.post('/updateData/:id', (req, res) => {
-  Schedule.findByIdAndUpdate(req.params.id, { time: req.body.time,content: req.body.content }).then(data => res.json(data)).catch(err => res.status(404).json(err))
-})
-/* 删除一条数据 */
-app.get('/deleteData/:id', (req, res) => {
-  Schedule.findByIdAndRemove(req.params.id).then(data => res.json(data)).catch(err => res.status(404).json(err))
-})
-
+// 使用routes
+app.use('/api/schedule', schedule);
 
 app.listen(3000, () => console.log('Example app listening on port 3000!'))

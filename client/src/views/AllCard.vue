@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import {deleteData} from '../api/api'
+import {deleteData} from '../config/api/schedule'
 import updateCard from './UpdateCard'
 export default {
   props: {

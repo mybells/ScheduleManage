@@ -19,8 +19,8 @@
 <script>
 import allCard from './AllCard'
 import side from './Side'
-import {getData} from '../api/api'
-import Bus from '../components/common/bus.js'
+import {getData} from '../config/api/schedule'
+import Bus from '../config/common/bus.js'
 export default {
   components: {
     allCard,
