@@ -10,7 +10,8 @@ const schedule = require('./routes/schedule');
 
 /* mongoose连接 */
 /* 本地数据库 */
-const uri = "mongodb://localhost:27017/scheduledb";
+const uri = "mongodb+srv://mybells:test1234@cluster0-ryeek.mongodb.net/test?retryWrites=true&ssl=true&authSource=admin";
+// const uri = "mongodb://localhost:27017/scheduledb";
 mongoose.connect(uri, { useNewUrlParser: true}).then(
   () => { console.log("connect is success!") },
   err => { console.log(err)}
